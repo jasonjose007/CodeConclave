@@ -14,6 +14,7 @@ const Login = props => {
   const [formErrors, setFormErrors] = useState({ email: '', password: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const { login, error, setError } = useContext(AuthContext);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
@@ -82,7 +83,7 @@ const Login = props => {
     setIsSubmitting(true);
 
     try {
-      await login(formData);
+      await login(formData, rememberMe);
       navigate('/getting-started');
     } catch (err) {
       console.error('Login error:', err);
@@ -154,6 +155,18 @@ const Login = props => {
           )}
         </FormGroup>
 
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '8px 0' }}>
+          <input
+            type="checkbox"
+            id="rememberMe"
+            checked={rememberMe}
+            onChange={e => setRememberMe(e.target.checked)}
+            style={{ cursor: 'pointer' }}
+          />
+          <label htmlFor="rememberMe" style={{ cursor: 'pointer', fontSize: '14px' }}>
+            Remember me
+          </label>
+        </div>
         <ForgotPasswordLink type="button" onClick={props.onForgotPassword}>
           Forgot password?
         </ForgotPasswordLink>

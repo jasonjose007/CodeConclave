@@ -8,7 +8,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(
+    localStorage.getItem('token') || sessionStorage.getItem('token')
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -75,11 +77,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Login user
-  const login = async (userData) => {
+  const login = async (userData, rememberMe = false) => {
     setError(null);
     try {
       const res = await axios.post('/auth/login', userData);
-      localStorage.setItem('token', res.data.token);
+      const storage = rememberMe ? localStorage : sessionStorage;
+      storage.setItem('token', res.data.token);
       setToken(res.data.token);
       setCurrentUser(res.data.user);
       
@@ -101,6 +104,7 @@ export const AuthProvider = ({ children }) => {
   // Logout user
   const logout = () => {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     setToken(null);
     setCurrentUser(null);
     delete axios.defaults.headers.common['Authorization'];
