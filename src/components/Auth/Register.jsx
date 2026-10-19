@@ -218,7 +218,7 @@ const Register = () => {
               onClick={toggleConfirmPasswordVisibility}
               aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
             >
-              {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+              {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </PasswordToggle>
           </PasswordInputWrapper>
           {errors.confirmPassword && <ErrorText id="confirmPassword-error" role="alert">{errors.confirmPassword}</ErrorText>}
