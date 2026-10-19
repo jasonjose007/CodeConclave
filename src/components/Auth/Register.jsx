@@ -170,7 +170,7 @@ const Register = () => {
               onClick={togglePasswordVisibility}
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
-              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+              {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </PasswordToggle>
           </PasswordInputWrapper>
           {errors.password && <ErrorText id="password-error" role="alert">{errors.password}</ErrorText>}

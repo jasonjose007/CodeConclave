@@ -142,7 +142,7 @@ const Login = props => {
               aria-label={showPassword ? 'Hide password' : 'Show password'}
               aria-pressed={showPassword}
             >
-              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+              {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </PasswordToggle>
           </PasswordInputWrapper>
 
