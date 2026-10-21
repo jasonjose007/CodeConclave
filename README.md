@@ -25,23 +25,52 @@ Built with a modern stack designed for performance and security:
 - **Backend**: Node.js microservices handling auth, file systems, and LLM orchestration.
 - **Infrastructure**: Dockerized containers orchestrated for isolation and security.
 
-### 🚀 Quick Start
+### 🚀 Running Locally
 
-1. **Clone & Install**
+#### Prerequisites
+- **Node.js** v16 or higher
+- **npm** (comes with Node.js)
+
+#### Steps
+
+1. **Fork and clone the repository**
    ```bash
-   git clone https://github.com/yourusername/CodeConclave.git
+   git clone https://github.com/<your-username>/CodeConclave.git
    cd CodeConclave
+   ```
+
+2. **Install dependencies**
+   ```bash
    npm install
    ```
 
-2. **Environment Setup**
-   Copy `.env.example` to `.env` and add your keys. You'll need a MongoDB URI and JWT Secret at minimum.
+3. **Environment setup**
+   Copy `.env.example` to `.env` and fill in the required values:
+   ```bash
+   cp .env.example .env
+   ```
+   At minimum you will need:
+   - `VITE_API_URL` — backend API base URL
+   - `JWT_SECRET` — secret for signing JWT tokens
+   - `MONGODB_URI` — MongoDB connection string
 
-3. **Launch**
+4. **Start the development server**
    ```bash
    npm run dev
    ```
-   Visit `http://localhost:5173` to enter the enclave.
+   The app will be available at `http://localhost:5173`.
+
+#### Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server with hot reload |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview the production build locally |
+| `npm test` | Run unit tests with Vitest |
+| `npm run lint` | Run ESLint |
+
+> **Before pushing**: always run `npm run build` to verify the build succeeds.
 
 ---
 
